@@ -94,6 +94,8 @@ class Joy_caption_load:
 
         # Image Adapter
         adapter_path =  os.path.join(folder_paths.models_dir,"Joy_caption","image_adapter.pt")
+        if not os.path.exists(adapter_path):
+             adapter_path = os.path.join(folder_paths.cache_dir, "Joy_caption", "image_adapter.pt")
 
         image_adapter = ImageAdapter(clip_model.config.hidden_size, text_model.config.hidden_size) # ImageAdapter(clip_model.config.hidden_size, 4096) 
         image_adapter.load_state_dict(torch.load(adapter_path, map_location="cpu"))
