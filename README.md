@@ -1,4 +1,32 @@
-worflow/Min2.6+joy+Florence2.json
+.20240-10-30 添加批量图片分类
+
+![workflow_min2 6classifiy_](https://github.com/user-attachments/assets/1687cc01-89c4-4628-8f8c-abc641c62a43)
+
+
+.2024-10-16 添加批量打标：4090大概4~5秒一张图
+
+![批量打标](https://github.com/user-attachments/assets/15e4075b-ed78-4e88-b586-09f65483c991)
+
+![1729064090078](https://github.com/user-attachments/assets/bb61ac24-5bec-4018-98cf-8007533d4dbc)
+
+.2024-10-12 添加joy alpha2
+
+模型下载：https://pan.baidu.com/s/1dOjbUEacUOhzFitAQ3uIeQ?pwd=4ypv#list/path=%2F
+
+Joy_caption_alpha 放到 models\Joy_caption_alpha 下载：https://huggingface.co/spaces/fancyfeast/joy-caption-alpha-two/tree/main/cgrkzexw-599808
+
+![1728728834716](https://github.com/user-attachments/assets/3adc7c92-1247-436e-8589-f5c64d33378e)
+
+
+![joy_alpha](https://github.com/user-attachments/assets/4ab7de6a-405e-405b-b03e-0850522e3951)
+
+
+.2024-9-9 florence2 Add Florence-2-large-PromptGen-v1.5 and MiniCPM3-4B(CXH_MinCP3_4B_Load CXH_MinCP3_4B_Chat) 
+    MiniCPM3-4B聊天 翻译，改写都很强
+
+.2024-9-6 florence2 Add Florence-2-base-PromptGen-v1.5 
+
+.2024-9-2 更新批量打标案例(Update batch marking cases) 速度：florence2<min2.6<joy
 
 ![1724901350282](https://github.com/user-attachments/assets/c9d9cd10-fbd6-4aeb-91b6-f2740c3998cc)
 
