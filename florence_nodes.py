@@ -17,14 +17,6 @@ import re
 
 #workaround for unnecessary flash_attn requirement
 from unittest.mock import patch
-from transformers.dynamic_module_utils import get_imports
-
-def fixed_get_imports(filename: str | os.PathLike) -> list[str]:
-    if not str(filename).endswith("modeling_florence2.py"):
-        return get_imports(filename)
-    imports = get_imports(filename)
-    # imports.remove("flash_attn")
-    return imports
 
 
 import comfy.model_management as mm
@@ -32,8 +24,6 @@ from comfy.utils import ProgressBar
 import folder_paths
 
 script_directory = os.path.dirname(os.path.abspath(__file__))
-
-from transformers import AutoModelForCausalLM, AutoProcessor
 
 class CXH_DownloadAndLoadFlorence2Model:
     @classmethod
@@ -73,6 +63,7 @@ class CXH_DownloadAndLoadFlorence2Model:
     CATEGORY = "CXH/LLM"
 
     def loadmodel(self, model, precision, attention):
+        from transformers import AutoModelForCausalLM, AutoProcessor
         device = mm.get_torch_device()
         offload_device = mm.unet_offload_device()
         dtype = {"bf16": torch.bfloat16, "fp16": torch.float16, "fp32": torch.float32}[precision]
@@ -92,6 +83,12 @@ class CXH_DownloadAndLoadFlorence2Model:
                                 local_dir_use_symlinks=False)
             
         print(f"using {attention} for attention")
+        def fixed_get_imports(filename: str | os.PathLike) -> list[str]:
+            from transformers.dynamic_module_utils import get_imports
+            if not str(filename).endswith("modeling_florence2.py"):
+                return get_imports(filename)
+            imports = get_imports(filename)
+            return imports
         with patch("transformers.dynamic_module_utils.get_imports", fixed_get_imports): #workaround for unnecessary flash_attn requirement
             model = AutoModelForCausalLM.from_pretrained(model_path, attn_implementation=attention, device_map=device, torch_dtype=dtype,trust_remote_code=True)
         processor = AutoProcessor.from_pretrained(model_path, trust_remote_code=True)
@@ -161,7 +158,7 @@ class CXH_Florence2Run:
                 "num_beams": ("INT", {"default": 3, "min": 1, "max": 64}),
                 "do_sample": ("BOOLEAN", {"default": True}),
                 "output_mask_select": ("STRING", {"default": ""}),
-                "seed":("INT", {"default": 0, "min": 0, "max": 0x1FFFFFFFFFFFFF}),
+                "seed": ("INT", {"default": 656545, "min": 0, "max": 1000000}),
             }
     
         }

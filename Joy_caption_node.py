@@ -1,11 +1,7 @@
 
-from huggingface_hub import InferenceClient
 from torch import nn
-from transformers import AutoModel, AutoProcessor, AutoTokenizer, PreTrainedTokenizer, PreTrainedTokenizerFast, AutoModelForCausalLM
-from pathlib import Path
 import torch
 import torch.amp.autocast_mode
-from PIL import Image
 import os
 import folder_paths
 
@@ -82,6 +78,8 @@ class Joy_caption_load:
     FUNCTION = "gen"
 
     def loadCheckPoint(self):
+
+        from transformers import AutoModel, AutoProcessor, AutoTokenizer, PreTrainedTokenizer, PreTrainedTokenizerFast, AutoModelForCausalLM
         # 清除一波
         if self.pipeline != None:
             self.pipeline.clearCache() 

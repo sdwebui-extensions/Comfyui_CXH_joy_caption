@@ -1,14 +1,3 @@
-
-from huggingface_hub import InferenceClient
-from torch import nn
-from transformers import AutoModel, AutoProcessor, AutoTokenizer, PreTrainedTokenizer, PreTrainedTokenizerFast, AutoModelForCausalLM
-from pathlib import Path
-import torch
-import torch.amp.autocast_mode
-from PIL import Image
-import os
-import folder_paths
-
 from .lib.ximg import *
 from .lib.xmodel import *
 
@@ -38,6 +27,8 @@ class CXH_HG_Model_Load:
     FUNCTION = "gen"
 
     def gen(self,model):
+
+        from transformers import AutoTokenizer, PreTrainedTokenizer, PreTrainedTokenizerFast, AutoModelForCausalLM
         
         self.pipe = CXH_Hg_Pipe()
 
@@ -67,7 +58,7 @@ class CXH_Min2_6_prompt_Run :
                 "prompt":   ("STRING", {"multiline": True, "default": "Provide a detailed description of the details and content contained in the image, and generate a short prompt that can be used for image generation tasks in Stable Diffusion,remind you only need respons prompt itself and no other information."},),
                 "max_tokens":("INT", {"default": 1024, "min": 10, "max": 4048, "step": 1}),
                 "temperature": ("FLOAT", {"default": 0.7, "min": 0.0, "max": 1.0, "step": 0.01}),
-                "seed":("INT", {"default": 0, "min": 0, "max": 0x1FFFFFFFFFFFFF}),
+                "seed": ("INT", {"default": 656545, "min": 0, "max": 1000000}),
             }
         }
 
