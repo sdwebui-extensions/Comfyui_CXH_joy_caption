@@ -85,12 +85,12 @@ class CXH_DownloadAndLoadFlorence2Model:
         print(f"using {attention} for attention")
         def fixed_get_imports(filename: str | os.PathLike) -> list[str]:
             from transformers.dynamic_module_utils import get_imports
-            if not str(filename).endswith("modeling_florence2.py"):
-                return get_imports(filename)
+            # if not str(filename).endswith("modeling_florence2.py"):
+            #     return get_imports(filename)
             imports = get_imports(filename)
             return imports
-        with patch("transformers.dynamic_module_utils.get_imports", fixed_get_imports): #workaround for unnecessary flash_attn requirement
-            model = AutoModelForCausalLM.from_pretrained(model_path, attn_implementation=attention, device_map=device, torch_dtype=dtype,trust_remote_code=True)
+        # with patch("transformers.dynamic_module_utils.get_imports", fixed_get_imports): #workaround for unnecessary flash_attn requirement
+        model = AutoModelForCausalLM.from_pretrained(model_path, attn_implementation=attention, device_map=device, torch_dtype=dtype,trust_remote_code=True)
         processor = AutoProcessor.from_pretrained(model_path, trust_remote_code=True)
         
         florence2_model = {
