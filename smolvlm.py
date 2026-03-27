@@ -1,7 +1,8 @@
 
 from huggingface_hub import InferenceClient
 from torch import nn
-from transformers import AutoModelForVision2Seq,CLIPImageProcessor, AutoProcessor, AutoTokenizer, PreTrainedTokenizer, PreTrainedTokenizerFast, AutoModelForCausalLM
+from transformers import CLIPImageProcessor, AutoProcessor, AutoTokenizer, PreTrainedTokenizer, PreTrainedTokenizerFast, AutoModelForCausalLM
+from transformers import AutoModelForImageTextToText as AutoModelForVision2Seq
 from pathlib import Path
 import torch
 import torch.amp.autocast_mode
